@@ -17,17 +17,20 @@ from numpy import arange, array
 
 import numpy as np
 
-from .tmm_core import coh_tmm
+from tmm_core import coh_tmm
 
-try:
-    import colorpy
-    import colorpy.illuminants
-    import colorpy.ciexyz
-except ImportError:
-    print('Warning: Colorpy not detected (or perhaps an error occurred when',
-          'loading it). Film color calculations (in tmm.color)',
-          'will not work. Main version is at http://pypi.python.org/pypi/colorpy',
-          'A Python 3 compatible edit is at https://github.com/fish2000/ColorPy/')
+import colorpy
+import colorpy.illuminants
+import colorpy.ciexyz
+# try:
+#     import colorpy
+#     import colorpy.illuminants
+#     import colorpy.ciexyz
+# except ImportError:
+#     print('Warning: Colorpy not detected (or perhaps an error occurred when',
+#           'loading it). Film color calculations (in tmm.color)',
+#           'will not work. Main version is at http://pypi.python.org/pypi/colorpy',
+#           'A Python 3 compatible edit is at https://github.com/fish2000/ColorPy/')
 
 inf = float('inf')
 

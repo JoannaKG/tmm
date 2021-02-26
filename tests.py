@@ -6,12 +6,13 @@ run them all in order.
 
 from __future__ import division, print_function, absolute_import
 
-from .tmm_core import (coh_tmm, inc_tmm, ellips, position_resolved,
+from tmm_core import (coh_tmm, inc_tmm, ellips, position_resolved,
                        absorp_in_each_layer, snell, absorp_analytic_fn,
                        interface_r, inc_absorp_in_each_layer,
                        interface_R, interface_T, power_entering_from_r)
 
-from numpy import pi, linspace, inf, exp, cos, average, array, vstack, imag
+import numpy as np
+from numpy import pi, inf, exp, cos, average, array, vstack, imag
 
 # "5 * degree" is 5 degrees expressed in radians
 # "1.2 / degree" is 1.2 radians expressed in degrees
@@ -323,7 +324,7 @@ def incoherent_test():
         inc_data = inc_tmm(pol, n_list, d_list_inc, c_list, th0, lam_vac)
         coh_Rs = []
         coh_Ts = []
-        for dsub in linspace(10000, 30000, 357):
+        for dsub in np.linspace(10000, 30000, 357):
             d_list = [inf, 100, dsub, inf]
             coh_data = coh_tmm(pol, n_list, d_list, th0, lam_vac)
             coh_Rs.append(coh_data['R'])
@@ -345,7 +346,7 @@ def incoherent_test():
         inc_absorp = array([0., 0., 0., 0.])
         coh_absorp = array([0., 0., 0., 0.])
         num_pts = 234
-        for lam_vac in linspace(40, 50, num_pts):
+        for lam_vac in np.linspace(40, 50, num_pts):
             inc_data = inc_tmm(pol, n_list, d_list, c_list, th0, lam_vac)
             inc_absorp += array(inc_absorp_in_each_layer(inc_data))
             coh_data = coh_tmm(pol, n_list, d_list, th0, lam_vac)
